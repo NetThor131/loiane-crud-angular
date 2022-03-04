@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Curso } from '../models';
 import { CursosService } from './../services';
@@ -9,12 +10,12 @@ import { CursosService } from './../services';
   styleUrls: ['./cursos.component.css'],
 })
 export class CursosComponent implements OnInit {
-  cursos: Curso[] = [];
+  cursos: Observable<Curso[]>;
   displayedColumns = ['nome', 'categoria'];
 
-  constructor(private cursosService: CursosService) {}
-
-  ngOnInit(): void {
+  constructor(private cursosService: CursosService) {
     this.cursos = this.cursosService.list();
   }
+
+  ngOnInit(): void {}
 }
